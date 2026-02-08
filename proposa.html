@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shedrack 💍 Ufedomi</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:black;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Hero Section */
+.hero{
+    height:100vh;
+    background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)),
+      url('couple.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+.hero-content{
+    max-width:800px;
+    padding:20px;
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+#typing{
+    font-size:22px;
+    margin-top:15px;
+    min-height:60px;
+}
+
+/* Proposal Section */
+.proposal{
+    min-height:100vh;
+    background: radial-gradient(circle at top, #ff9a9e, #ff2f6d);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+    position:relative;
+}
+
+.card{
+    background:rgba(255,255,255,0.95);
+    color:#333;
+    padding:45px 35px;
+    border-radius:25px;
+    max-width:450px;
+    width:100%;
+    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+    position:relative;
+}
+
+.card img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #ff2f6d;
+    margin-bottom:15px;
+}
+
+.card h2{
+    color:#ff2f6d;
+}
+
+.buttons{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    position:relative;
+}
+
+button{
+    padding:14px 32px;
+    border-radius:30px;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+#yesBtn{
+    background:#ff2f6d;
+    color:white;
+}
+
+#yesBtn:hover{
+    transform:scale(1.15);
+    background:#ff4f85;
+}
+
+#noBtn{
+    background:#ccc;
+    position:absolute;
+}
+
+/* Effects */
+.float{
+    position:fixed;
+    font-size:24px;
+    animation: floatUp linear infinite;
+    z-index:1;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0);opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(-120vh);opacity:0;}
+}
+
+/* Kiss */
+.kiss{
+    position:fixed;
+    font-size:60px;
+    animation: kissPop 1.5s ease forwards;
+    z-index:999;
+}
+@keyframes kissPop{
+    0%{transform:scale(0);opacity:0;}
+    50%{transform:scale(1.5);opacity:1;}
+    100%{transform:scale(1);opacity:0;}
+}
+
+/* Fireworks */
+.firework{
+    position:fixed;
+    font-size:30px;
+    animation: boom 1.5s ease-out forwards;
+}
+@keyframes boom{
+    0%{transform:scale(0);opacity:0;}
+    50%{transform:scale(2);opacity:1;}
+    100%{transform:scale(3);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic Music -->
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/10/30/audio_52d7c6b4b7.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Voice intro -->
+<audio autoplay>
+<source src="https://cdn.pixabay.com/audio/2023/03/30/audio_4d0bbfa8c3.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Shedrack ❤️ Ufedomi</h1>
+        <div id="typing"></div>
+    </div>
+</section>
+
+<!-- PROPOSAL -->
+<section class="proposal">
+    <div class="card">
+        <img src="shedrack.jpg" alt="Shedrack">
+
+        <h2>Ufedomi ❤️</h2>
+        <p>
+            From the day you came into my life, everything changed.  
+            You became my peace, my joy, my safe place, my home.  
+            I don’t want a future without you in it.  
+        </p>
+
+        <h2>💍 Will you marry me? 💍</h2>
+
+        <div class="buttons">
+            <button id="yesBtn">YES 💖💍</button>
+            <button id="noBtn">NO 💔</button>
+        </div>
+    </div>
+</section>
+
+<script>
+// Typing text
+const text = "Ufedomi ❤️ You are my answered prayer, my forever, my love story, my destiny... This is not just love, this is purpose. – Shedrack 💖";
+let i=0;
+const typingDiv=document.getElementById("typing");
+function type(){
+ if(i<text.length){
+  typingDiv.innerHTML+=text.charAt(i);
+  i++;
+  setTimeout(type,50);
+ }
+}
+type();
+
+// No button escape
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+ const x=Math.random()*(window.innerWidth-120);
+ const y=Math.random()*(window.innerHeight-120);
+ noBtn.style.left=x+"px";
+ noBtn.style.top=y+"px";
+});
+
+// Yes button
+const yesBtn=document.getElementById("yesBtn");
+yesBtn.addEventListener("click",()=>{
+
+// Confetti
+for(let i=0;i<120;i++){
+ const c=document.createElement("div");
+ c.className="float";
+ c.innerHTML="🎉";
+ c.style.left=Math.random()*100+"vw";
+ c.style.bottom="0px";
+ c.style.animationDuration=(Math.random()*2+2)+"s";
+ document.body.appendChild(c);
+ setTimeout(()=>c.remove(),4000);
+}
+
+// Kiss
+for(let i=0;i<8;i++){
+ const k=document.createElement("div");
+ k.className="kiss";
+ k.innerHTML="💋";
+ k.style.left=Math.random()*100+"vw";
+ k.style.top=Math.random()*100+"vh";
+ document.body.appendChild(k);
+ setTimeout(()=>k.remove(),1500);
+}
+
+// Fireworks
+for(let i=0;i<12;i++){
+ const f=document.createElement("div");
+ f.className="firework";
+ f.innerHTML="🎆";
+ f.style.left=Math.random()*100+"vw";
+ f.style.top=Math.random()*100+"vh";
+ document.body.appendChild(f);
+ setTimeout(()=>f.remove(),1500);
+}
+
+setTimeout(()=>{
+ document.body.innerHTML=`
+ <div style="height:100vh;background:radial-gradient(circle,#ff9a9e,#ff2f6d);
+ display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white;">
+ <h1 style="font-size:50px;">💍 SHE SAID YES!!! 💍</h1>
+ <p style="font-size:28px;">Ufedomi is officially my wife 😭❤️</p>
+ <p style="font-size:22px;">Forever begins today 💖</p>
+ </div>
+ `;
+},1500);
+
+// WhatsApp
+setTimeout(()=>{
+ window.location.href="https://wa.me/?text=I%20just%20said%20YES%20to%20marrying%20Shedrack%20💍❤️😭";
+},3500);
+
+});
+
+// floating hearts
+setInterval(()=>{
+ const f=document.createElement("div");
+ f.className="float";
+ f.innerHTML=Math.random()>0.5?"💖":"🌹";
+ f.style.left=Math.random()*100+"vw";
+ f.style.bottom="-20px";
+ f.style.animationDuration=(Math.random()*3+4)+"s";
+ document.body.appendChild(f);
+ setTimeout(()=>f.remove(),7000);
+},300);
+</script>
+
+</body>
+</html>
